@@ -51,8 +51,8 @@ const Navbar = ({ handleOrderPopup }) => {
         <div className="bg-gradient-to-r from-primary to-secondary text-white ">
           <div className="container py-[2px] sm:block hidden">
             <div className="flex items-center justify-between">
-              <p className="text-sm">20% off on next booking</p>
-              <p>mobile no. +91 123456789</p>
+              {/* <p className="text-sm">20% off on next booking</p>
+              <p>mobile no. +91 123456789</p> */}
             </div>
           </div>
         </div>
@@ -60,7 +60,8 @@ const Navbar = ({ handleOrderPopup }) => {
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-4  font-bold text-2xl">
               <Link to={"/"} onClick={() => window.scrollTo(0, 0)}>
-                <img src={Logo} alt="" className="h-16" />
+                {/* <img src={Logo} alt="" className="h-16" /> */}
+                <p>Journey Junction</p>
               </Link>
               {/* <span>TCJ Tourism</span> */}
             </div>
@@ -86,7 +87,7 @@ const Navbar = ({ handleOrderPopup }) => {
                     About
                   </NavLink>
                 </li>
-                <li className="group relative cursor-pointer">
+                {/* <li className="group relative cursor-pointer">
                   <a
                     href="/#home"
                     className="flex h-[72px] items-center gap-[2px]"
@@ -110,7 +111,7 @@ const Navbar = ({ handleOrderPopup }) => {
                       ))}
                     </ul>
                   </div>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div className="flex items-center gap-4">
@@ -120,7 +121,7 @@ const Navbar = ({ handleOrderPopup }) => {
                   handleOrderPopup();
                 }}
               >
-                Book Now
+                Sign Up
               </button>
               {/* Mobile Hamburger icon */}
               <div className="md:hidden block">

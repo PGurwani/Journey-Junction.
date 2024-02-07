@@ -7,7 +7,7 @@ const PlaceCard = ({
   location,
   description,
   price,
-  type,
+  button,
   handleOrderPopup,
 }) => {
   return (
@@ -33,10 +33,10 @@ const PlaceCard = ({
           <p className="line-clamp-2">{description}</p>
           <div className="flex items-center justify-between border-t-2 py-3 !mt-3">
             <div className="opacity-70">
-              <p>{type}</p>
+            <button type="button" class="btn">View Details</button>
             </div>
             <div>
-              <p className="text-2xl font-bold">${price}</p>
+              <p className="text-2xl font-bold">Rs {price}</p>
             </div>
           </div>
         </div>

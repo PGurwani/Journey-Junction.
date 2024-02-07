@@ -1,7 +1,7 @@
 import React from "react";
 import TravelImg from "../../assets/travelbox.png";
 import { MdFlight, MdOutlineLocalHotel } from "react-icons/md";
-import { IoIosWifi } from "react-icons/io";
+import { IoIosWifi, IoMdBus } from "react-icons/io";
 import { IoFastFoodSharp } from "react-icons/io5";
 
 const Banner = () => {
@@ -25,7 +25,7 @@ const Banner = () => {
                   data-aos="fade-up"
                   className="text-3xl sm:text-4xl font-bold"
                 >
-                  Explore all corners of The world with us
+                  Explore all corners of The Maharashtra with us
                 </h1>
                 <p
                   data-aos="fade-up"
@@ -39,8 +39,8 @@ const Banner = () => {
                 <div data-aos="zoom-in" className="grid grid-cols-2 gap-6">
                   <div className="space-y-6">
                     <div className="flex items-center gap-4">
-                      <MdFlight className="text-4xl h-12 w-12 shadow-sm p-4 rounded-full bg-violet-100 dark:bg-violet-400" />
-                      <p>Flight</p>
+                      <IoMdBus className="text-4xl h-12 w-12 shadow-sm p-4 rounded-full bg-violet-100 dark:bg-violet-400" />
+                      <p>Travels</p>
                     </div>
                     <div className="flex items-center gap-4">
                       <MdOutlineLocalHotel className="text-4xl h-12 w-12 shadow-sm p-4 rounded-full bg-orange-100 dark:bg-orange-400" />
