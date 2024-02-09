@@ -41,7 +41,7 @@ const ReviewPage = () => {
   return (
     <div
     style={{
-      backgroundImage: "url('https://image-processor-storage.s3.us-west-2.amazonaws.com/images/40b728d6de76998d17ba7eb10f5c5f2c/palm-tree-leaf-shadow-on-pink-background.jpg')", 
+      backgroundImage: "url('https://hougumlaw.com/wp-content/uploads/2016/05/light-website-backgrounds-light-color-background-images-light-color-background-images-for-website-1024x640.jpg')", 
       backgroundSize: "cover",
       backgroundPosition: "center",
       minHeight: "100vh",
@@ -58,7 +58,7 @@ const ReviewPage = () => {
               elevation={3}
               style={{
                 padding: 20,
-                backgroundImage: "url('https://t3.ftcdn.net/jpg/03/31/38/36/360_F_331383662_s8PHpNma4FoU1qNDPfXLqYWnxFw1l7aT.jpg')", // Replace with the path to your background image
+                backgroundImage: "url('https://media.istockphoto.com/id/1333063467/photo/minimal-abstract-background-for-product-presentation-leaf-shadow-on-yellow-plaster-wall.webp?b=1&s=170667a&w=0&k=20&c=NDbtwZQ0wRUwJ9y47SMZ6KpevIuFVvfE1VGLTMG44AQ=')", // Replace with the path to your background image
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
