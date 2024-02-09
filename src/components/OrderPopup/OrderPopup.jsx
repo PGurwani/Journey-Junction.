@@ -9,7 +9,7 @@ const OrderPopup = ({ orderPopup, setOrderPopup }) => {
     <>
       {orderPopup && (
         <div className="h-screen w-screen fixed top-0 left-0 bg-black/50 z-50 backdrop-blur-sm">
-          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 shadow-md bg-white dark:bg-gray-900 rounded-md duration-200 w-[1100px] h-[800px]">
+          <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 shadow-md bg-white dark:bg-gray-900 rounded-md duration-200 w-[1000px] h-[700px]">
             <div className="flex items-center justify-center">
               <div className="text-center">
                 <h2 className="text-2xl font-bold text-black/70">
@@ -26,17 +26,16 @@ const OrderPopup = ({ orderPopup, setOrderPopup }) => {
             {/* Body */}
             <form className="register-form" id="register-form" action="">
               <div className="mt-4 form-group flex flex-col">
-                <div>
+              <div>
                   <label htmlFor="name" className="text-lg mb-2 underline">
-                    <i className="zmdi zmdi-account material-icons-name"></i>
+                    <i className="zmdi zmdi-account"></i>
+
                   </label>
                   <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    autoComplete="off"
-                    placeholder="Your Name"
-                    className="form-control mb-4 text-lg p-2 border-b-3 focus:outline-none focus:border-blue-500"
+                    type="email"
+                    name="email"
+                    placeholder="Your Email"
+                    className="form-control mb-4 text-lg p-2 border-b focus:outline-none focus:border-blue-500"
                   />
                 </div>
                 <div>
