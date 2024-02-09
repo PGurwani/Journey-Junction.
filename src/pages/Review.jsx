@@ -39,6 +39,17 @@ const ReviewPage = () => {
   };
 
   return (
+    <div
+    style={{
+      backgroundImage: "url('https://image-processor-storage.s3.us-west-2.amazonaws.com/images/40b728d6de76998d17ba7eb10f5c5f2c/palm-tree-leaf-shadow-on-pink-background.jpg')", 
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      minHeight: "100vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+    >
     <Container>
       <Grid container spacing={3} justifyContent="center" alignItems="center" style={{ minHeight: "100vh" }}>
         <Grid item xs={12} md={6}>
@@ -47,7 +58,7 @@ const ReviewPage = () => {
               elevation={3}
               style={{
                 padding: 20,
-                backgroundImage: "url('path/to/your/image.jpg')", // Replace with the path to your background image
+                backgroundImage: "url('https://t3.ftcdn.net/jpg/03/31/38/36/360_F_331383662_s8PHpNma4FoU1qNDPfXLqYWnxFw1l7aT.jpg')", // Replace with the path to your background image
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -100,6 +111,7 @@ const ReviewPage = () => {
         </Grid>
       </Grid>
     </Container>
+    </div>
   );
 };
 
