@@ -8,11 +8,10 @@ const OrderPopup = ({ orderPopup, setOrderPopup }) => {
         <div className="h-screen w-screen fixed top-0 left-0 bg-black/50 z-50 backdrop-blur-sm">
           <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 shadow-md bg-white dark:bg-gray-900 rounded-md duration-200 w-[300px]">
             {" "}
-            {/* Header */}
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-xl font-semibold text-black/70">
-                  Book Your Trip
+                  <div className="signUp">Sign Up</div>
                 </h1>
               </div>
               <div>
@@ -47,7 +46,8 @@ const OrderPopup = ({ orderPopup, setOrderPopup }) => {
             </div>
           </div>
         </div>
-      )}
+      )
+      }
     </>
   );
 };

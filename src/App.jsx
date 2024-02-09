@@ -10,10 +10,13 @@ import About from "./pages/About";
 import BlogsDetails from "./pages/BlogsDetails";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Review from "../src/pages/Review";
 
 const App = () => {
   React.useEffect(() => {
     AOS.init({
+      
+      
       offset: 100,
       duration: 900,
       easing: "ease-in-sine",
@@ -32,6 +35,7 @@ const App = () => {
             <Route path="best-places" element={<PlacesRoute />} />
             <Route path="about" element={<About />} />
             <Route path="*" element={<NoPage />} />
+            <Route path="/review" element = {<Review />} />
           </Route>
         </Routes>
       </BrowserRouter>

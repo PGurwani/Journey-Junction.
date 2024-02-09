@@ -1,5 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
+import Rating from "@mui/material/Rating";
+import Typography from "@mui/material/Typography";
 
 const testimonialData = [
   {
@@ -7,18 +9,21 @@ const testimonialData = [
     name: "Samuel",
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
     img: "https://picsum.photos/101/101",
+    rating: 4,
   },
   {
-    id: 1,
+    id: 2,
     name: "John Doe",
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
     img: "https://picsum.photos/102/102",
+    rating: 5,
   },
   {
-    id: 1,
+    id: 3,
     name: "Smith",
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque reiciendis inventore iste ratione ex alias quis magni at optio",
     img: "https://picsum.photos/103/103",
+    rating: 3,
   },
 ];
 
@@ -61,6 +66,7 @@ const Testimonial = () => {
       },
     ],
   };
+
   return (
     <>
       <div data-aos="fade-up" data-aos-duration="300" className="py-10">
@@ -85,7 +91,7 @@ const Testimonial = () => {
             className="grid grid-cols-1 max-w-[800px] mx-auto gap-6"
           >
             <Slider {...settings}>
-              {testimonialData.map(({ id, name, text, img }) => {
+              {testimonialData.map(({ id, name, text, img, rating }) => {
                 return (
                   <div key={id} className="my-6">
                     <div className="flex flex-col justify-center items-center gap-4 text-center shadow-lg p-4 mx-4 rounded-xl dark:bg-gray-800 bg-primary/10 relative">
@@ -95,6 +101,7 @@ const Testimonial = () => {
                         className="rounded-full block mx-auto"
                       />
                       <h1 className="text-xl font-bold">{name}</h1>
+                      <Rating name={`rating-${id}`} value={rating} readOnly />
                       <p className="text-gray-500 text-sm">{text}</p>
                       <p className="text-black/20 text-9xl font-serif absolute top-0 right-0">
                         ,,
