@@ -1,5 +1,8 @@
-import React from "react";
+// import React from "react";
+import { useEffect } from "react";
+import PropTypes from "prop-types";
 import PlaceCard from "./PlaceCard";
+import { loadTawkToScript } from "../../tawktoscript";
 import Img1 from "../../assets/places/alibagh.jpg";
 import Img2 from "../../assets/places/Rajmachi fort.jpg";
 import Img3 from "../../assets/places/matheranjpg.jpg";
@@ -61,13 +64,17 @@ const PlacesData = [
     type: "Cultural Relax",
   },
 ];
-
 const Places = ({ handleOrderPopup }) => {
+  useEffect(() => {
+    // Load Tawk.to script once the component is mounted
+    loadTawkToScript();
+  }, []);
+
   return (
     <>
       <div className="dark:bg-gray-900 dark:text-white bg-gray-50 py-10">
         <section data-aos="fade-up" className="container ">
-          <h1 className=" my-8 border-l-8 border-primary/50 py-2 pl-2 text-3xl font-bold">
+          <h1 className="my-8 border-l-8 border-primary/50 py-2 pl-2 text-3xl font-bold">
             Best Places to Visit
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -83,6 +90,10 @@ const Places = ({ handleOrderPopup }) => {
       </div>
     </>
   );
+};
+
+Places.propTypes = {
+  handleOrderPopup: PropTypes.func.isRequired,
 };
 
 export default Places;
