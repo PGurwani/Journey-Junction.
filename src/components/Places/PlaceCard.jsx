@@ -32,15 +32,16 @@ const PlaceCard = ({
           </div>
           <p className="line-clamp-2">{description}</p>
           <div className="flex items-center justify-between border-t-2 py-3 !mt-3">
-            <div className="opacity-70">
+          <div className="opacity-70">
             <button type="button" class="btn">View Details</button>
             </div>
+         </div>
+
             <div>
               <p className="text-2xl font-bold">Rs {price}</p>
             </div>
           </div>
         </div>
-      </div>
     </>
   );
 };
