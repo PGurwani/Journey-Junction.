@@ -47,7 +47,7 @@ const Navbar = ({ handleOrderPopup }) => {
   };
   return (
     <>
-      <nav className="fixed top-0 right-0 w-full z-50 bg-white backdrop-blur-sm text-black shadow-md">
+      <nav className="fixed top-0 right-0 w-full z-50 bg-white backdrop-blur-sm text-black shadow-md" style = {{height: "70px"}}>
         <div className="bg-gradient-to-r from-primary to-secondary text-white ">
           <div className="container py-[2px] sm:block hidden">
             <div className="flex items-center justify-between">
@@ -87,6 +87,12 @@ const Navbar = ({ handleOrderPopup }) => {
                     About
                   </NavLink>
                 </li>
+                <li className="py-4">
+                  <NavLink to="/review" activeClassName="active">
+                    Reviews
+                  </NavLink>
+                </li>
+
                 {/* <li className="group relative cursor-pointer">
                   <a
                     href="/#home"
