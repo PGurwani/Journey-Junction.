@@ -1,5 +1,7 @@
 import React from "react";
 import { IoLocationSharp } from "react-icons/io5";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 const PlaceCard = ({
   img,
@@ -33,7 +35,9 @@ const PlaceCard = ({
           <p className="line-clamp-2">{description}</p>
           <div className="flex items-center justify-between border-t-2 py-3 !mt-3">
             <div className="opacity-70">
-            <button type="button" class="btn">View Details</button>
+            <Button variant="contained" color="success">
+        Join Group
+      </Button>
             </div>
             <div>
               <p className="text-2xl font-bold">Rs {price}</p>
