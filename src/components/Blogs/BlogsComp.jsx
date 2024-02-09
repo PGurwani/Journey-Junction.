@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import BlogCard from "./BlogCard";
 import Img1 from "../../assets/places/matheranjpg.jpg";
 import Img2 from "../../assets/places/Rajmachi fort.jpg";

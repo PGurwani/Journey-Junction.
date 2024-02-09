@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import BlogsComp from "../components/Blogs/BlogsComp";
 
 const Blogs = () => {
