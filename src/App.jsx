@@ -1,5 +1,5 @@
 import React from "react";
-
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
@@ -11,7 +11,7 @@ import BlogsDetails from "./pages/BlogsDetails";
 import Login from "./pages/login";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Review from "../src/pages/Review";
+import Review from "../src/pages/Review"
 
 const App = () => {
   React.useEffect(() => {
