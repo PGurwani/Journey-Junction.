@@ -39,6 +39,17 @@ const ReviewPage = () => {
   };
 
   return (
+    <div
+    style={{
+      backgroundImage: "url('https://hougumlaw.com/wp-content/uploads/2016/05/light-website-backgrounds-light-color-background-images-light-color-background-images-for-website-1024x640.jpg')", 
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      minHeight: "100vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+    >
     <Container>
       <Grid container spacing={3} justifyContent="center" alignItems="center" style={{ minHeight: "100vh" }}>
         <Grid item xs={12} md={6}>
@@ -47,7 +58,7 @@ const ReviewPage = () => {
               elevation={3}
               style={{
                 padding: 20,
-                backgroundImage: "url('path/to/your/image.jpg')", // Replace with the path to your background image
+                backgroundImage: "url('https://media.istockphoto.com/id/1333063467/photo/minimal-abstract-background-for-product-presentation-leaf-shadow-on-yellow-plaster-wall.webp?b=1&s=170667a&w=0&k=20&c=NDbtwZQ0wRUwJ9y47SMZ6KpevIuFVvfE1VGLTMG44AQ=')", // Replace with the path to your background image
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -100,6 +111,7 @@ const ReviewPage = () => {
         </Grid>
       </Grid>
     </Container>
+    </div>
   );
 };
 
