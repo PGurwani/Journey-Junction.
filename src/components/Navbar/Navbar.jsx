@@ -4,6 +4,7 @@ import { NavLink, Link } from "react-router-dom";
 import { FaCaretDown } from "react-icons/fa";
 import ResponsiveMenu from "./ResponsiveMenu";
 import { HiMenuAlt3, HiMenuAlt1 } from "react-icons/hi";
+import Login from '../login/login';
 
 export const NavbarLinks = [
   {
@@ -39,7 +40,7 @@ const DropdownLinks = [
   },
 ];
 
-const Navbar = ({ handleOrderPopup }) => {
+const Navbar = ({ handleOrderPopup,handleLogin }) => {
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
@@ -51,8 +52,8 @@ const Navbar = ({ handleOrderPopup }) => {
         <div className="bg-gradient-to-r from-primary to-secondary text-white ">
           <div className="container py-[2px] sm:block hidden">
             <div className="flex items-center justify-between">
-              {/* <p className="text-sm">20% off on next booking</p>
-              <p>mobile no. +91 123456789</p> */}
+              <p className="text-sm">Get 20% off on your first booking!!!</p>
+              <p>mobile no. +91 9404965065</p>
             </div>
           </div>
         </div>
@@ -129,6 +130,15 @@ const Navbar = ({ handleOrderPopup }) => {
               >
                 Sign Up
               </button>
+              { <button
+                className="bg-gradient-to-r from-primary to-secondary hover:bg-bg-gradient-to-r hover:from-secondary hover:bg-primary transition-all duration-600 text-white px-3 py-1 rounded-full"
+                onClick={() => {
+                  handleLogin();
+                }}
+              >
+                Login
+              {/* <Login onLogin={handleLogin} /> */}
+              </button> }
               {/* Mobile Hamburger icon */}
               <div className="md:hidden block">
                 {showMenu ? (

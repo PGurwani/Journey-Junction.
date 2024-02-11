@@ -8,6 +8,7 @@ import NoPage from "./pages/NoPage";
 import PlacesRoute from "./pages/PlacesRoute";
 import About from "./pages/About";
 import BlogsDetails from "./pages/BlogsDetails";
+import Login from "./pages/login";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Review from "../src/pages/Review";
@@ -36,6 +37,7 @@ const App = () => {
             <Route path="about" element={<About />} />
             <Route path="*" element={<NoPage />} />
             <Route path="/review" element = {<Review />} />
+            <Route path="/login" element = {<Login />} />
           </Route>
         </Routes>
       </BrowserRouter>
