@@ -3,7 +3,6 @@ import { IoLocationSharp } from "react-icons/io5";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
-//Fixed
 
 const PlaceCard = ({
   img,
@@ -41,9 +40,12 @@ const PlaceCard = ({
         Join Group
       </Button>
             </div>
-            <Link to="/Pawna"  className="btn">
-              View Details
-            </Link>
+            <div className="opacity-70">
+           <a href="/pawna" target="blank"><p variant="contained" color="success">
+        View Details
+      </p></a> 
+      
+            </div>
          </div>
 
             <div>
