@@ -12,6 +12,7 @@ import Login from "./pages/login";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Review from "../src/pages/Review"
+import Pawna from "./pages/pawna"
 
 const App = () => {
   React.useEffect(() => {
@@ -38,6 +39,7 @@ const App = () => {
             <Route path="*" element={<NoPage />} />
             <Route path="/review" element = {<Review />} />
             <Route path="/login" element = {<Login />} />
+            <Route path = "/pawna" element = {<Pawna />} />
           </Route>
         </Routes>
       </BrowserRouter>
