@@ -11,7 +11,7 @@ import BlogsDetails from "./pages/BlogsDetails";
 import Login from "./pages/login";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Review from "./pages/Review"
+import Review from "./pages/Review";
 import Pawna from "./pages/pawna";
 
 const App = () => {

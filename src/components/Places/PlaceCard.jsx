@@ -40,12 +40,9 @@ const PlaceCard = ({
         Join Group
       </Button>
             </div>
-            <div className="opacity-70">
-           <a href="/pawna" target="blank"><p variant="contained" color="success">
-        View Details
-      </p></a> 
-      
-            </div>
+            <Link to="/Pawna"  className="btn">
+              View Details
+            </Link>
          </div>
 
             <div>
