@@ -13,6 +13,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Review from "./pages/Review";
 import Pawna from "./pages/pawna";
+import PaymentSuccess from "./components/Payment/PaymentSucess";
 
 const App = () => {
   React.useEffect(() => {
@@ -40,6 +41,7 @@ const App = () => {
             <Route path="/review" element = {<Review />} />
             <Route path="/login" element = {<Login />} />
             <Route path="/Pawna" element = {<Pawna />} />
+            <Route path="/payment" element = {<PaymentSuccess />} />
           </Route>
         </Routes>
       </BrowserRouter>

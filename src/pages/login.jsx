@@ -5,11 +5,26 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ loginPopup, setLoginPopup }) => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+    // const [username, setUsername] = useState('');
+    // const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [formData, setFormData] = useState({
+      username: "",
+      password: ""
+    });
+
+    const [message, setMessage] = useState(null);
+
+    const handleInputChange = (e) => {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value,
+      });
+    };
 
 
     const handleLogin = async (e) => {
@@ -18,9 +33,20 @@ const Login = ({ loginPopup, setLoginPopup }) => {
         try {
           // Replace 'http://localhost:8081/api/login' with your actual login API endpoint
           const response = await axios.post('http://localhost:8081/api/login', {
-            username,
-            password,
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
           });
+          if (response.ok) {
+            setMessage("Login successful. Redirecting...");
+            setLoginPopup(false);
+            navigate("/best-places");
+            // You can also handle the logged-in state or user authentication as needed.
+          } else {
+            setMessage("Login failed. Please check your credentials.");
+          }
     
           // Assuming the API returns user data upon successful login
           const user = response.data;
@@ -47,7 +73,9 @@ const Login = ({ loginPopup, setLoginPopup }) => {
             />
           </div>
     
-          {loginPopup && <div className="mb-4 text-red-500">{error}</div>}
+          {/* {loginPopup && <div className="mb-4 text-red-500">{error}</div>} */}
+
+          {message && <div className="mb-4">{message}</div>}
           <form onSubmit={handleLogin}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -56,8 +84,8 @@ const Login = ({ loginPopup, setLoginPopup }) => {
                   label="Your Username"
                   variant="outlined"
                   name="username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={formData.username}
+                  onChange={handleInputChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -67,8 +95,8 @@ const Login = ({ loginPopup, setLoginPopup }) => {
                   variant="outlined"
                   type="password"
                   name="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={formData.password}
+                  onChange={handleInputChange}
                 />
               </Grid>
               <Grid item xs={12}>
