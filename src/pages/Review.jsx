@@ -1,11 +1,15 @@
-import React, { useState } from "react";
-import { Typography, Container, Grid, Paper, TextField, Button } from "@mui/material";
+import React, { useState,useEffect } from "react";
+import { Typography, Container, Grid, Paper, TextField, Button, Select, MenuItem } from "@mui/material";
 import { useSpring, animated } from "react-spring";
+import Cookies from "js-cookie";
+import axios from 'axios';
 
 const ReviewPage = () => {
   const [rating, setRating] = useState(0);
-  const [description, setDescription] = useState("");
+  const [content, setContent] = useState("");
+  const [selectedPlace, setSelectedPlace] = useState(""); // New state for the selected place
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   const fadeIn = useSpring({
     from: { opacity: 0 },
@@ -30,87 +34,141 @@ const ReviewPage = () => {
   };
 
   const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
+    setContent(event.target.value);
   };
 
-  const handleSubmit = () => {
-    // You can add your logic for submitting the review here
-    setIsSubmitted(true);
+  const handlePlaceChange = (event) => {
+    setSelectedPlace(event.target.value);
   };
+
+
+
+  useEffect(() => {
+    // Retrieve user ID from cookie when component mounts
+    const userIdFromCookie = Cookies.get("userId");
+    console.log(userIdFromCookie)
+    if (userIdFromCookie) {
+      setUserId(userIdFromCookie);
+    }
+  }, []);
+
+  
+const handleSubmit = async () => {
+  // Check if the place is selected before submitting the review
+  if (selectedPlace && rating && content && userId) {
+    try {
+      // Send a POST request to the API endpoint
+      const response = await axios.post(`http://localhost:8081/api/review/${userId}`, {
+        place: selectedPlace,
+        rating,
+        content,
+      });
+
+      if (response.status === 200) {
+        setIsSubmitted(true);
+        console.log("successfully addedd")
+        // Optionally, you can handle success feedback here
+      } else {
+        // Optionally, you can handle other response statuses here
+        alert('Failed to submit review. Please try again later.');
+      }
+    } catch (error) {
+      // Handle any errors
+      console.error('Error submitting review:', error);
+      alert('Failed to submit review. Please try again later.');
+    }
+  } else {
+    alert('Please select a place, provide a rating, and write a review before submitting.');
+  }
+};
 
   return (
     <div
-    style={{
-      backgroundImage: "url('https://hougumlaw.com/wp-content/uploads/2016/05/light-website-backgrounds-light-color-background-images-light-color-background-images-for-website-1024x640.jpg')", 
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      minHeight: "100vh",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    }}
+      style={{
+        backgroundImage: "url('your_background_image_url')", // Replace with your background image
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
     >
-    <Container>
-      <Grid container spacing={3} justifyContent="center" alignItems="center" style={{ minHeight: "100vh" }}>
-        <Grid item xs={12} md={6}>
-          <animated.div style={{ ...fadeIn, textAlign: "center" }}>
-            <Paper
-              elevation={3}
-              style={{
-                padding: 20,
-                backgroundImage: "url('https://media.istockphoto.com/id/1333063467/photo/minimal-abstract-background-for-product-presentation-leaf-shadow-on-yellow-plaster-wall.webp?b=1&s=170667a&w=0&k=20&c=NDbtwZQ0wRUwJ9y47SMZ6KpevIuFVvfE1VGLTMG44AQ=')", // Replace with the path to your background image
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
-              <Typography variant="h4" gutterBottom>
-                Leave a Review
-              </Typography>
-              {isSubmitted ? (
-                <animated.div style={formSpring}>
-                  <Typography variant="h6" color="primary">
-                    Thank you for your review!
-                  </Typography>
-                </animated.div>
-              ) : (
-                <animated.div style={formSpring}>
-                  <Typography variant="h6">Rate your experience:</Typography>
-                  <animated.div style={{ ...starSpring, display: "inline-block" }}>
-                    {[1, 2, 3, 4, 5].map((value) => (
-                      <animated.span
-                        key={value}
-                        onClick={() => handleRatingChange(null, value)}
-                        style={{
-                          fontSize: 36,
-                          cursor: "pointer",
-                          marginRight: 5,
-                          color: value <= rating ? "gold" : "grey",
-                        }}
-                      >
-                        ★
-                      </animated.span>
-                    ))}
+      <Container>
+        <Grid container spacing={3} justifyContent="center" alignItems="center" style={{ minHeight: "100vh" }}>
+          <Grid item xs={12} md={6}>
+            <animated.div style={{ ...fadeIn, textAlign: "center" }}>
+              <Paper
+                elevation={3}
+                style={{
+                  padding: 20,
+                  backgroundImage: "url('your_paper_background_image_url')", // Replace with your background image
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <Typography variant="h4" gutterBottom>
+                  Leave a Review
+                </Typography>
+                {isSubmitted ? (
+                  <animated.div style={formSpring}>
+                    <Typography variant="h6" color="primary">
+                      Thank you for your review!
+                    </Typography>
                   </animated.div>
-                  <TextField
-                    label="Your review"
-                    multiline
-                    rows={4}
-                    variant="outlined"
-                    fullWidth
-                    margin="normal"
-                    value={description}
-                    onChange={handleDescriptionChange}
-                  />
-                  <Button variant="contained" color="primary" onClick={handleSubmit}>
-                    Submit Review
-                  </Button>
-                </animated.div>
-              )}
-            </Paper>
-          </animated.div>
+                ) : (
+                  <animated.div style={formSpring}>
+                    <Typography variant="h6">Select a place:</Typography>
+                    <Select
+                      label="Select a place"
+                      value={selectedPlace}
+                      onChange={handlePlaceChange}
+                      fullWidth
+                      margin="normal"
+                    >
+                      <MenuItem value="Pawna">Pawna</MenuItem>
+                      <MenuItem value="Matheran">Matheran</MenuItem>
+                      <MenuItem value="Kalsubai">Kalsubai Peak</MenuItem>
+                      <MenuItem value="Alibaug">Alibaug Beach</MenuItem>
+                      {/* Add more places as needed */}
+                    </Select>
+                    <Typography variant="h6">Rate your experience:</Typography>
+                    <animated.div style={{ ...starSpring, display: "inline-block" }}>
+                      {[1, 2, 3, 4, 5].map((value) => (
+                        <animated.span
+                          key={value}
+                          onClick={() => handleRatingChange(null, value)}
+                          style={{
+                            fontSize: 36,
+                            cursor: "pointer",
+                            marginRight: 5,
+                            color: value <= rating ? "gold" : "grey",
+                          }}
+                        >
+                          ★
+                        </animated.span>
+                      ))}
+                    </animated.div>
+                    <TextField
+                      label="Your review"
+                      multiline
+                      rows={4}
+                      variant="outlined"
+                      fullWidth
+                      margin="normal"
+                      value={content}
+                      onChange={handleDescriptionChange}
+                    />
+                    <Button variant="contained" color="primary" onClick={handleSubmit}>
+                      Submit Review
+                    </Button>
+                  </animated.div>
+                )}
+              </Paper>
+            </animated.div>
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
+      </Container>
     </div>
   );
 };

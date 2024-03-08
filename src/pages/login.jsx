@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 const Login = ({ loginPopup, setLoginPopup }) => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const Login = ({ loginPopup, setLoginPopup }) => {
       username: "",
       password: ""
     });
+    console.log(formData)
 
     const [message, setMessage] = useState(null);
 
@@ -28,40 +30,33 @@ const Login = ({ loginPopup, setLoginPopup }) => {
 
 
     const handleLogin = async (e) => {
-        e.preventDefault();
-    
-        try {
-          // Replace 'http://localhost:8081/api/login' with your actual login API endpoint
-          const response = await axios.post('http://localhost:8081/api/login', {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-          });
-          if (response.ok) {
-            setMessage("Login successful. Redirecting...");
-            setLoginPopup(false);
-            navigate("/best-places");
-            // You can also handle the logged-in state or user authentication as needed.
+      e.preventDefault();
+  
+      try {
+          const response = await axios.post('http://localhost:8081/api/login', formData);
+          
+          // Assuming the API returns a successful response with a status code of 200
+          if (response.status === 200) {
+              setMessage("Login successful. Redirecting...");
+              setLoginPopup(false);
+              navigate("/best-places");
+  
+              const user = response.data;
+              console.log(user)
+              Cookies.set('userId', user.id, { expires: 7 });
+  
+              // Update parent component with user data
+              loginPopup(user);
           } else {
-            setMessage("Login failed. Please check your credentials.");
+              // Handle other response statuses
+              setMessage("Login failed. Please check your credentials.");
           }
-    
-          // Assuming the API returns user data upon successful login
-          const user = response.data;
-    
-          // Update parent component with user data
-          loginPopup(user);
-    
-          // Close the login pop-up
-          setLoginPopup(false);
-        } catch (error) {
-          // Handle login error
+      } catch (error) {
+          // Handle request error
           setError('Invalid credentials. Please try again.');
-          console.log(error.message)
-        }
-      };
+          console.error('Error logging in:', error);
+      }
+  };
 
     return (
         (loginPopup && (<div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-3 p-4 shadow-md bg-white dark:bg-gray-900 rounded-md duration-200 w-[400px] h-[400px]">

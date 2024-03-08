@@ -18,8 +18,12 @@ const Home = () => {
   };
   return (
     <>
-      <div>
+      <div className="relative">
         <div className="h-[700px] relative">
+          {/* Blur overlay */}
+          <div className="absolute inset-0 h-full w-full bg-black opacity-50 filter blur-md"></div>
+
+          {/* Video */}
           <video
             autoPlay
             loop
@@ -28,8 +32,13 @@ const Home = () => {
           >
             <source src={NatureVid} type="video/mp4" />
           </video>
-          {/* <Hero /> */}
+
+          {/* Text overlay */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center z-10">
+            <h1 className="text-4xl font-bold">Where Solo Travelers Find Their Perfect Expedition Partners, Redefining Adventure in Every Step Together!</h1>
+          </div>
         </div>
+
 
         <Places handleOrderPopup={handleOrderPopup} />
         <BannerPic img={BannerImg} />
