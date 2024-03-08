@@ -6,6 +6,7 @@ const PaymentComponent = () => {
     paymentLinkUrl: "",
   });
 
+
   // Function to trigger payment
   const handlePayment = async () => {
     try {
@@ -13,6 +14,9 @@ const PaymentComponent = () => {
       const response = await fetch("http://localhost:8081/api/payments");
       if (!response.ok) {
         throw new Error('Failed to fetch payment details');
+      }
+      if(response.ok){
+        fetch("http://localhost:8081/api/groups")
       }
       const data = await response.json();
 

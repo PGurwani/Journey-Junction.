@@ -33,6 +33,8 @@ const Pawna = () => {
       // Add logic to show an error message or take appropriate action
     }
   };
+  
+
 
   useEffect(() => {
     // Auto-advance to the next slide every 5 seconds
@@ -295,7 +297,7 @@ const Pawna = () => {
 
       <div style={{ marginTop: '30px', textAlign: 'center' }}>
         <button style={{ padding: '10px 20px', fontSize: '18px', backgroundColor: '#007bff', color: '#fff', borderRadius: '5px', cursor: 'pointer' }} onClick={handleBookNow}>
-          JOIN Now
+          Book Now
         </button>
       </div>
       </div>
@@ -306,7 +308,6 @@ const Pawna = () => {
           onSuccess={(response) => {
             // Handle success
             console.log('Payment successful:', response);
-            history.push("/")
             // Add logic to navigate to the next step or update the UI
           }}
           onCancel={(response) => {
