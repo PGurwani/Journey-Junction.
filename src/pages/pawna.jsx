@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import AOS from 'aos';
+import axios from 'axios';
 import 'aos/dist/aos.css'; // Import AOS styles
 import { FaCalendarAlt, FaUser, FaUsers, FaMoneyBillAlt, FaUtensils, FaCampground, FaFire, FaCheckCircle, FaCircle } from 'react-icons/fa';
+import PaymentComponent from '../components/Payment/PaymentComponent';
+
 
 const Pawna = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showPayment, setShowPayment] = useState(false);
 
   const handlePrevSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide === 0 ? 2 : prevSlide - 1));
@@ -13,6 +17,29 @@ const Pawna = () => {
   const handleNextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide === 2 ? 0 : prevSlide + 1));
   };
+  
+  const handleBookNow = async () => {
+    try {
+      // Make a GET request to your backend API to get order details
+      const response = await axios.get('http://localhost:5173/api/payments');
+      const { paymentLinkId, paymentLinkUrl } = response.data;
+
+      // Set state to show the Razorpay payment component
+      setShowPayment(true);
+
+      // Now, you can use paymentLinkId and paymentLinkUrl to initiate the payment
+      // These values should be passed to the PaymentComponent
+      setPaymentDetails({
+        orderId: paymentLinkId,
+        paymentUrl: paymentLinkUrl,
+      });
+    } catch (error) {
+      // Handle error
+      console.error('Error fetching payment details:', error.message);
+      // Add logic to show an error message or take appropriate action
+    }
+  };
+
 
   useEffect(() => {
     // Auto-advance to the next slide every 5 seconds
@@ -274,12 +301,31 @@ const Pawna = () => {
 </div>
 
       <div style={{ marginTop: '30px', textAlign: 'center' }}>
-        <button style={{ padding: '10px 20px', fontSize: '18px', backgroundColor: '#007bff', color: '#fff', borderRadius: '5px', cursor: 'pointer' }}>
+        <button style={{ padding: '10px 20px', fontSize: '18px', backgroundColor: '#007bff', color: '#fff', borderRadius: '5px', cursor: 'pointer' }} onClick={handleBookNow}>
           Book Now
         </button>
       </div>
       </div>
+      {showPayment && (
+        <PaymentComponent
+          amount={1000}  // Replace with your actual amount
+          orderId={paymentDetails.orderId}  // Use the orderId fetched from the backend
+          onSuccess={(response) => {
+            // Handle success
+            console.log('Payment successful:', response);
+            // Add logic to navigate to the next step or update the UI
+          }}
+          onCancel={(response) => {
+            // Handle failure
+            console.error('Payment failed:', response.error.description);
+            // Add logic to show an error message or take appropriate action
+          }}
+        />
+      )}
       </>
+    
         );
         };
         export default Pawna;
+
+        
