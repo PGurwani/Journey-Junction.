@@ -1,6 +1,6 @@
-// Import necessary dependencies
+import React, { useState } from "react";
 
-const YourComponent = () => {
+const PaymentComponent = () => {
   const [paymentDetails, setPaymentDetails] = useState({
     paymentLinkId: "",
     paymentLinkUrl: "",
@@ -8,18 +8,26 @@ const YourComponent = () => {
 
   // Function to trigger payment
   const handlePayment = async () => {
-    // Call your backend API to get payment details
-    const response = await fetch("http://localhost:5173/api/payments");
-    const data = await response.json();
+    try {
+      // Call your backend API to get payment details
+      const response = await fetch("http://localhost:8081/api/payments");
+      if (!response.ok) {
+        throw new Error('Failed to fetch payment details');
+      }
+      const data = await response.json();
 
-    // Set payment details in the state
-    setPaymentDetails({
-      paymentLinkId: data.paymentLinkId,
-      paymentLinkUrl: data.paymentLinkUrl,
-    });
+      // Set payment details in the state
+      setPaymentDetails({
+        paymentLinkId: data.paymentLinkId,
+        paymentLinkUrl: data.paymentLinkUrl,
+      });
 
-    // Open Razorpay payment link
-    openRazorpay();
+      // Open Razorpay payment link
+      openRazorpay();
+    } catch (error) {
+      console.error('Error handling payment:', error);
+      // Add any error handling logic here, such as displaying an error message to the user
+    }
   };
 
   // Function to open Razorpay payment link
@@ -70,4 +78,4 @@ const YourComponent = () => {
   );
 };
 
-export default YourComponent;
+export default PaymentComponent;

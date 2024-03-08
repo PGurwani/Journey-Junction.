@@ -21,25 +21,18 @@ const Pawna = () => {
   const handleBookNow = async () => {
     try {
       // Make a GET request to your backend API to get order details
-      const response = await axios.get('http://localhost:5173/api/payments');
+      const response = await axios.get('http://localhost:8081/api/payments');
       const { paymentLinkId, paymentLinkUrl } = response.data;
-
-      // Set state to show the Razorpay payment component
-      setShowPayment(true);
-
-      // Now, you can use paymentLinkId and paymentLinkUrl to initiate the payment
-      // These values should be passed to the PaymentComponent
-      setPaymentDetails({
-        orderId: paymentLinkId,
-        paymentUrl: paymentLinkUrl,
-      });
+  
+      // Open the payment link URL in a new tab/window
+      window.open(paymentLinkUrl, '_blank');
+  
     } catch (error) {
       // Handle error
       console.error('Error fetching payment details:', error.message);
       // Add logic to show an error message or take appropriate action
     }
   };
-
 
   useEffect(() => {
     // Auto-advance to the next slide every 5 seconds
@@ -302,7 +295,7 @@ const Pawna = () => {
 
       <div style={{ marginTop: '30px', textAlign: 'center' }}>
         <button style={{ padding: '10px 20px', fontSize: '18px', backgroundColor: '#007bff', color: '#fff', borderRadius: '5px', cursor: 'pointer' }} onClick={handleBookNow}>
-          Book Now
+          JOIN Now
         </button>
       </div>
       </div>
@@ -313,6 +306,7 @@ const Pawna = () => {
           onSuccess={(response) => {
             // Handle success
             console.log('Payment successful:', response);
+            history.push("/")
             // Add logic to navigate to the next step or update the UI
           }}
           onCancel={(response) => {
