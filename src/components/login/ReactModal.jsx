@@ -1,12 +1,13 @@
 import * as React from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
-import axios from 'axios';
 import { IoCloseOutline } from 'react-icons/io5';
+import { useNavigate } from "react-router-dom";
 
 const buttonStyle = {
   width: "1px",
@@ -28,34 +29,56 @@ const style = {
   p: 4,
 };
 
-const LoginModal = ({ onLogin, setLoginPopup }) => {
+const BasicModal = () => {
   const [open, setOpen] = React.useState(false);
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [error, setError] = React.useState('');
+  const [error] = React.useState('');
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-    setOpen(false);
-    setLoginPopup(false);
+  const handleClose = () => setOpen(false);
+
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    phone_no: "",
+    password: "",
+  });
+
+  const [message,setMessage] = useState(null);
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const handleLogin = async (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8081/api/login', {
-        username,
-        password,
-      });
+        const loginResponse = await fetch("http://localhost:8081/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: formData.username,
+            password: formData.password,
+          }),
+        });
 
-      const user = response.data;
-      onLogin(user);
-
-      handleClose();
+        if (loginResponse.ok) {
+          setMessage("Login successful. Redirecting...");
+          setOpen(false);
+          navigate("/best-places");
+          // You can also handle the logged-in state or user authentication as needed.
+        } else {
+          setMessage("Login failed. Please check your credentials.");
+        }
     } catch (error) {
-      setError('Invalid credentials. Please try again.');
-      console.log(error.message)
+      setMessage("Error during registration/login. Please try again.");
+      console.error("Error during registration/login:", error.message);
     }
   };
 
@@ -79,7 +102,7 @@ const LoginModal = ({ onLogin, setLoginPopup }) => {
           </div>
 
           {error && <div className="mb-4 text-red-500">{error}</div>}
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleFormSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -87,8 +110,8 @@ const LoginModal = ({ onLogin, setLoginPopup }) => {
                   label="Your Username"
                   variant="outlined"
                   name="username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={formData.username}
+                  onChange={handleInputChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -98,8 +121,8 @@ const LoginModal = ({ onLogin, setLoginPopup }) => {
                   variant="outlined"
                   type="password"
                   name="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={formData.password}
+                  onChange={handleInputChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -120,4 +143,4 @@ const LoginModal = ({ onLogin, setLoginPopup }) => {
   );
 };
 
-export default LoginModal;
+export default BasicModal;

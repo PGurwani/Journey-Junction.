@@ -5,7 +5,7 @@ import { FaCaretDown } from "react-icons/fa";
 import ResponsiveMenu from "./ResponsiveMenu";
 import { HiMenuAlt3, HiMenuAlt1 } from "react-icons/hi";
 import Login from "../login/login";
-import ReactModal from "./ReactModal";
+import ReactModal from "../login/ReactModal";
 
 export const NavbarLinks = [
   {

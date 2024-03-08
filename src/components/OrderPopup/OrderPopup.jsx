@@ -73,7 +73,7 @@ const OrderPopup = ({ orderPopup, setOrderPopup }) => {
         <div className="h-screen w-screen fixed top-0 left-0 bg-black/50 z-50 backdrop-blur-sm">
           <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 shadow-md bg-white dark:bg-gray-900 rounded-md duration-200 w-[500px] h-[600px]">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl font-bold">Sign Up / Login</h2>
+              <h2 className="text-2xl font-bold">Sign Up</h2>
               <IoCloseOutline
                 className="text-2xl cursor-pointer"
                 onClick={() => {
@@ -133,7 +133,7 @@ const OrderPopup = ({ orderPopup, setOrderPopup }) => {
                       Cancel
                     </Button>
                     <Button variant="contained" type="submit">
-                      Sign Up / Login
+                      Sign Up
                     </Button>
                   </Stack>
                 </Grid>
