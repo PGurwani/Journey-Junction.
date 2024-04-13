@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AOS from 'aos';
 import axios from 'axios';
 import 'aos/dist/aos.css'; // Import AOS styles
-import { FaCalendarAlt, FaUser, FaUsers, FaMoneyBillAlt, FaUtensils, FaCampground, FaFire, FaCheckCircle, FaCircle } from 'react-icons/fa';
+import { FaCalendarAlt, FaUser, FaUsers, FaMoneyBillAlt, FaUtensils, FaCampground, FaFire, FaCheckCircle, FaCircle, FaArrowRight, FaMapMarkerAlt  } from 'react-icons/fa';
 import PaymentComponent from '../components/Payment/PaymentComponent';
 
 
@@ -114,18 +114,20 @@ const Pawna = () => {
         </button>
       </div>
     </div>
-    <div style={{ marginBottom: '50px', marginTop:'-300px', paddingTop: '10px', textAlign: 'center', backgroundColor: '#fff', width: '60%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginLeft: 'auto', marginRight: 'auto', borderRadius:'10px' }}>
-  <h2 style={{ fontWeight: 'bold', fontSize:'30px' }}>Trip Details</h2>
-  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'right', marginBottom: '10px', width: '100%' }}>
-    <div style={{ display: 'flex', alignItems: 'right', marginBottom: '10px',fontSize:'20px' }}>
-      <FaCalendarAlt style={{ fontSize: '30px', marginRight: '10px' }} />
-      <p>01 Days | 02 Nights</p>
-    </div>
-    <div style={{ display: 'flex', alignItems: 'right', marginBottom: '10px',fontSize:'20px' }}>
-      <FaUser style={{ fontSize: '30px', marginRight: '10px' }} />
-      <p>Age: 18-50</p>
-    </div>
-    <div style={{ display: 'flex', alignItems: 'right', marginBottom: '10px',fontSize:'20px' }}>
+    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: '0 20px', margin: '0 20px' }}>
+  {/* First Section */}
+    <div style={{ flex: 1, marginBottom: '50px', marginTop:'-300px', paddingTop: '10px', textAlign: 'center', backgroundColor: '#fff', marginRight: '10px', borderRadius:'10px',height:'250px' }}>
+    <h2 style={{ fontWeight: 'bold', fontSize:'30px' }}>Trip Details</h2>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'right', marginBottom: '10px', width: '100%' }}>
+      <div style={{ display: 'flex', alignItems: 'right', marginBottom: '10px',fontSize:'20px' }}>
+        <FaCalendarAlt style={{ fontSize: '30px', marginRight: '10px' }} />
+        <p>01 Days | 02 Nights</p>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'right', marginBottom: '10px',fontSize:'20px' }}>
+        <FaUser style={{ fontSize: '30px', marginRight: '10px' }} />
+        <p>Age: 18-50</p>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'right', marginBottom: '10px',fontSize:'20px' }}>
       <FaUsers style={{ fontSize: '30px', marginRight: '10px' }} />
       <p>Max No of People: 18-20</p>
     </div>
@@ -133,7 +135,9 @@ const Pawna = () => {
       <FaMoneyBillAlt style={{ fontSize: '30px', marginRight: '10px' }} />
       <p>Price: Rs1000</p>
     </div>
+    </div>
   </div>
+
 </div>
 <div style={{ marginTop: '30px', textAlign: 'center', padding: '20px' }}>
   <h2 style={{ fontWeight: 'bold',fontSize:'30px' }}>What Our Travellers Say</h2>
@@ -294,10 +298,83 @@ const Pawna = () => {
     </div>
   </div>
 </div>
+{/* Bus Route Information */}
+<div style={{ marginTop: '30px', textAlign: 'center', backgroundColor: '#fff', padding: '20px', width: '80%', marginLeft: 'auto', marginRight: 'auto', borderRadius: '10px' }}>
+  {/* First Horizontal Div */}
+  <div style={{ marginBottom: '20px' }}>
+    <h2 style={{ fontWeight: 'bold', fontSize: '30px' }}>Bus Route</h2>
+    {/* <p>Total Time of Travel: 10 hours</p> */}
+    {/* Add your flowchart or any other representation of places in order of travel here */}
+    <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      {/* Place your flowchart or representation here */}
+      {/* Example: */}
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', border: '1px solid #ddd', padding: '10px', borderRadius: '5px' }}>
+        {/* Add your flowchart elements here */}
+        <div style={{ margin: '0 5px', display: 'flex', alignItems: 'center' }}>
+          VESIT
+          <FaArrowRight style={{ marginLeft: '5px', marginRight: '5px', fontSize: '16px' }} />
+        </div>
+        <div style={{ margin: '0 5px', display: 'flex', alignItems: 'center' }}>
+          Vashi
+          <FaArrowRight style={{ marginLeft: '5px', marginRight: '5px', fontSize: '16px' }} />
+        </div>
+        <div style={{ margin: '0 5px', display: 'flex', alignItems: 'center' }}>
+          Panvel
+          <FaArrowRight style={{ marginLeft: '5px', marginRight: '5px', fontSize: '16px' }} />
+        </div>
+        <div style={{ margin: '0 5px', display: 'flex', alignItems: 'center' }}>
+          Lonavala
+          <FaArrowRight style={{ marginLeft: '5px', marginRight: '5px', fontSize: '16px' }} />
+        </div>
+        <div style={{ margin: '0 5px', display: 'flex', alignItems: 'center' }}>
+          Pawna
+        </div>
+        {/* Add more elements as needed */}
+      </div>
+    </div>
+  </div>
 
+  {/* Second Horizontal Div */}
+  <div>
+    <h2 style={{ fontWeight: 'bold', fontSize: '30px' }}>Boarding Points</h2>
+    <div style={{ display: 'flex', alignItems: 'left', flexDirection: 'column', marginTop: '10px' }}>
+      <div style={{ display: 'flex', alignItems: 'left', marginBottom: '10px' }}>
+        <FaMapMarkerAlt style={{ fontSize: '12px', color: 'black', marginRight: '5px' }} />
+        <p>Pick-up Point 1:</p>
+        <p> [Address] - 9:00 AM</p>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'left', marginBottom: '10px' }}>
+        <FaMapMarkerAlt style={{ fontSize: '12px', color: 'black', marginRight: '5px' }} />
+        <p>Pick-up Point 2:</p>
+        <p> [Address] - 9:30 AM</p>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'left', marginBottom: '10px' }}>
+        <FaMapMarkerAlt style={{ fontSize: '12px', color: 'black', marginRight: '5px' }} />
+        <p>Pick-up Point 3:</p>
+        <p> [Address] - 10:00 AM</p>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'left', marginBottom: '10px' }}>
+        <FaMapMarkerAlt style={{ fontSize: '12px', color: 'black', marginRight: '5px' }} />
+        <p>Pick-up Point 4:</p>
+        <p> [ Address] - 10:30 AM</p>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'left', marginBottom: '10px' }}>
+        <FaMapMarkerAlt style={{ fontSize: '12px', color: 'black', marginRight: '5px' }} />
+        <p>Pick-up Point 5:</p>
+        <p> [ Address] - 11:00 AM</p>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'left', marginBottom: '10px' }}>
+        <FaMapMarkerAlt style={{ fontSize: '12px', color: 'black', marginRight: '5px' }} />
+        <p>Pick-up Point 6:</p>
+        <p> [ Address] - 11:30 AM</p>
+      </div>
+      {/* Add more pick-up points with time information as needed */}
+    </div>
+  </div>
+</div>
       <div style={{ marginTop: '30px', textAlign: 'center' }}>
         <button style={{ padding: '10px 20px', fontSize: '18px', backgroundColor: '#007bff', color: '#fff', borderRadius: '5px', cursor: 'pointer' }} onClick={handleBookNow}>
-          Book Now
+          Join Now
         </button>
       </div>
       </div>

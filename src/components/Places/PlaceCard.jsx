@@ -12,6 +12,8 @@ const PlaceCard = ({
   price,
   button,
   handleOrderPopup,
+  seatCount,
+  onOrder
 }) => {
   return (
     <div className="shadow-lg transition-all duration-500 hover:shadow-xl dark:bg-slate-950 dark:text-white cursor-pointer"
@@ -36,7 +38,8 @@ const PlaceCard = ({
           <div className="opacity-70">
             {/* <Button type="button" class="btn">View Details</Button> */}
             <div className="opacity-70">
-            <Button variant="contained" color="success">
+              <p className="mb-2">AVAILABLE SEATS:{seatCount}</p>
+            <Button variant="contained" color="success" onClick={onOrder}>
         Join Group
       </Button>
             </div>

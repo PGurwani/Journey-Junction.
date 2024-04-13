@@ -6,6 +6,7 @@ import ResponsiveMenu from "./ResponsiveMenu";
 import { HiMenuAlt3, HiMenuAlt1 } from "react-icons/hi";
 import Login from "../login/login";
 import ReactModal from "../login/ReactModal";
+import logo1 from "../../assets/logo1.png"
 
 export const NavbarLinks = [
   {
@@ -43,10 +44,17 @@ const DropdownLinks = [
 
 const Navbar = ({ handleOrderPopup, handleLogin }) => {
   const [showMenu, setShowMenu] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
+  const handleAuthentication = () => {
+    // Logic for successful login or signup
+    console.log("Authentication successful!");
+    setAuthenticated(true); // Update authentication status to true
+  };
+  
   return (
     <>
       <nav
@@ -64,34 +72,22 @@ const Navbar = ({ handleOrderPopup, handleLogin }) => {
         <div className="container py-3 sm:py-0">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-4  font-bold text-2xl">
+              
               <Link to={"/"} onClick={() => window.scrollTo(0, 0)}>
-                {/* <img src={Logo} alt="" className="h-16" /> */}
-                <p>Journey Junction</p>
+                <img src={logo1} alt="" className="h-16" />
+                {/* <img src={logo1} alt="" /> */}
               </Link>
               {/* <span>TCJ Tourism</span> */}
             </div>
             <div className="hidden md:block">
               <ul className="flex items-center gap-6 ">
-                <li className="py-4">
-                  <NavLink to="/" activeClassName="active">
-                    Home
-                  </NavLink>
-                </li>
-                <li className="py-4">
-                  <NavLink to="/blogs" activeClassName="active">
-                    Blogs
-                  </NavLink>
-                </li>
-                <li className="py-4">
-                  <NavLink to="/best-places" activeClassName="active">
-                    Best Places
-                  </NavLink>
-                </li>
-                <li className="py-4">
-                  <NavLink to="/about" activeClassName="active">
-                    About
-                  </NavLink>
-                </li>
+                {NavbarLinks.map((link) => (
+                  <li className="py-4" key={link.name}>
+                    <NavLink to={link.link} activeClassName="active">
+                      {link.name}
+                    </NavLink>
+                  </li>
+                ))}
                 <li className="py-4">
                   <NavLink to="/review" activeClassName="active">
                     Reviews
@@ -126,6 +122,12 @@ const Navbar = ({ handleOrderPopup, handleLogin }) => {
               </ul>
             </div>
             <div className="flex items-center gap-4">
+
+              {!authenticated && (
+                <button className="bg-gradient-to-r from-primary to-secondary hover:bg-bg-gradient-to-r hover:from-secondary hover:bg-primary transition-all duration-600 text-white px-3 py-1 rounded-full">
+                  <ReactModal onAuthenticate={handleAuthentication} />
+                </button>
+              )}
               <button
                 className="bg-gradient-to-r from-primary to-secondary hover:bg-bg-gradient-to-r hover:from-secondary hover:bg-primary transition-all duration-600 text-white px-3 py-1 rounded-full"
                 onClick={() => {
@@ -133,12 +135,6 @@ const Navbar = ({ handleOrderPopup, handleLogin }) => {
                 }}
               >
                 Sign Up
-              </button>
-              <button
-                className="bg-gradient-to-r from-primary to-secondary hover:bg-bg-gradient-to-r hover:from-secondary hover:bg-primary transition-all duration-600 text-white px-3 py-1 rounded-full"
-                
-              >
-                <ReactModal />
               </button>
               {/* Mobile Hamburger icon */}
               <div className="md:hidden block">

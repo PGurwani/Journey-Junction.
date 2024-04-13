@@ -8,6 +8,8 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import { IoCloseOutline } from 'react-icons/io5';
 import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
+
 
 const buttonStyle = {
   width: "1px",
@@ -72,6 +74,9 @@ const BasicModal = () => {
           setMessage("Login successful. Redirecting...");
           setOpen(false);
           navigate("/best-places");
+          const userData = await loginResponse.json();
+          Cookies.set('userId', userData.id, { expires: 7 });
+          console.log(userData)
           // You can also handle the logged-in state or user authentication as needed.
         } else {
           setMessage("Login failed. Please check your credentials.");
