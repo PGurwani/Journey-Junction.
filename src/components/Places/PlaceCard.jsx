@@ -38,8 +38,7 @@ const PlaceCard = ({
           <div className="opacity-70">
             {/* <Button type="button" class="btn">View Details</Button> */}
             <div className="opacity-70">
-              <p className="mb-2">AVAILABLE SEATS:{seatCount}</p>
-            <Button variant="contained" color="success" onClick={onOrder}>
+            <Button variant="contained" color="success">
         Join Group
       </Button>
             </div>
