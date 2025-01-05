@@ -23,7 +23,7 @@ const PaymentSuccess = () => {
           const data = await response.json();
           setPaymentId(data.paymentID);
           setReferenceId(data.referenceId);
-          setPaymentStatus("Success");
+          setPaymentStatus("Success"); 
         } else {
           // Handle unsuccessful payment
           setPaymentStatus("Failed");
